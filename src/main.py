@@ -23,7 +23,7 @@ async def my_background_task():
         file.write(str(current_amount))
         file.truncate()
         file.close()
-        await asyncio.sleep(60)  # task runs every 60 seconds
+        await asyncio.sleep(1800)  # task runs every 60 seconds
 
 
 @client.event
