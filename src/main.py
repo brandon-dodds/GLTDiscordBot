@@ -7,7 +7,7 @@ client = discord.Client()
 
 async def my_background_task():
     await client.wait_until_ready()
-    channel = discord.Object(id='373836665937985539')
+    channel = discord.Object(id='369782637822345216')
 
     while not client.is_closed:
         shoujo_shuumatsu_feed = "https://nyaa.si/?page=rss&q=shoujo+shuumatsu+1080p+horriblesubs&c=0_0&f=0"
@@ -25,7 +25,6 @@ async def my_background_task():
             file.close()
             await asyncio.sleep(900)  # task runs every 60 seconds
         else:
-            print("There is no new episode")
             await asyncio.sleep(900)  # task runs every 60 seconds
 
 
