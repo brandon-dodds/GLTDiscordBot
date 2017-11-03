@@ -18,7 +18,7 @@ async def my_background_task():
         episode_link = feed["items"][0]["link"]
 
         if x > current_amount:
-            await client.send_message(channel, "The new episode is here! @botpings. \n The link is here! {0}".format(episode_link))
+            await client.send_message(channel, "The new episode is here! @botpings \n The link is here! {0}".format(episode_link))
             current_amount = current_amount + 1
             file.seek(0)
             file.write(str(current_amount))
