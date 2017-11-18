@@ -1,5 +1,6 @@
-import discord
 import asyncio
+
+import discord
 import feedparser
 
 client = discord.Client()
@@ -7,7 +8,7 @@ client = discord.Client()
 
 async def my_background_task():
     await client.wait_until_ready()
-    channel = discord.Object(id='369782637822345216')
+    channel = discord.Object(id='373836665937985539')
 
     while not client.is_closed:
         shoujo_shuumatsu_feed = "https://nyaa.si/?page=rss&q=shoujo+shuumatsu+1080p+horriblesubs&c=0_0&f=0"
@@ -19,7 +20,7 @@ async def my_background_task():
 
         if x > current_amount:
             await client.send_message(channel, "The new episode is here! @botpings \n The link is here! {0}".format(episode_link))
-            current_amount = current_amount + 1
+            current_amount = x
             file.seek(0)
             file.write(str(current_amount))
             file.truncate()
@@ -37,4 +38,7 @@ async def on_ready():
 
 
 client.loop.create_task(my_background_task())
-client.run('MzY5NTg1NTE3MzYyMTUxNDM2.DMawKA.wTHjFgny7JZx6Y1uAsJAFbEX5F4')
+token_file = open("token.txt", "r")
+token = str(token_file.read())
+client.run(token)
+token_file.close()
