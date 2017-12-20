@@ -12,9 +12,8 @@ async def update_checks():
     tkmiz_last_published = None
 
     while not client.is_closed:
-        [episode_count, tkmiz_last_published] = await asyncio.gather( \
-                new_episode_check(episode_count), \
-                tkmiz_media_check(tkmiz_last_published))
+        [episode_count, tkmiz_last_published] = await asyncio.gather(new_episode_check(episode_count),
+                                                                     tkmiz_media_check(tkmiz_last_published))
         await asyncio.sleep(900)
 
 
@@ -27,8 +26,9 @@ async def new_episode_check(current_count):
     count = len(feed['items'])
     if current_count is not None and count > current_count:
         link = feed['items'][0]['link']
-        await client.send_message(episode_announcements, \
-                "The new episode is here! {0} \n The link is here! {1}".format(botpings.mention, link))
+        await client.send_message(episode_announcements,
+                                  "The new episode is here! {0} \n The link is here! {1}".format(botpings.mention,
+                                                                                                 link))
 
     return count
 
@@ -52,6 +52,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
+
 
 client.loop.create_task(update_checks())
 token_file = open("token.txt", "r")
